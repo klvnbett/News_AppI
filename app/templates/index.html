@@ -19,23 +19,34 @@
 
     {% block content %}
 
+    <div class="container">
+        <form>
+            <input type="text" name="movie_query" placeholder="Search for a news" class="form-control">
+            <input type="submit" value="Submit" class="btn btn-default">
+        </form>
+    </div>
 
-    <h3>
-        Sources
-    </h3>
+    <div class="card card-casscade wider">
+        <h1>
+            NEWS UPDATES
+        </h1>
+    </div>
+
 
 
     {% for news in sources %}
-    <div class="col-md-3">
-        <div class="card text-white bg-secondary mb-3" style="max-width: 20rem;">
+    <div class="col-lg-3">
+        <div class="card text-white bg-secondary mb-3">
             <div class="card-header">{{news.name}}</div>
             <div class="card-body">
+                <h5>by{{news.author}}</h5>
                 <h4 class="card-title">{{news.description|truncate(50)}}
                 </h4>
 
-
-                <p class="card-text"><a href="/articles/{{news.id}}">
-                   Visit {{ news.name}}</a></p>
+                <p class="card-text">
+                    <a href="/articles/{{news.id}}">
+                        <button>{{ news.name}}</button> </a>
+                </p>
             </div>
         </div>
     </div>

@@ -23,8 +23,8 @@ def get_news(source):
 
         news_results = None
         if get_news_response['articles']:
-            news1_results_list = get_news_response['articles']
-            news_results = process_results(news1_results_list)
+            newsBreak_results_list = get_news_response['articles']
+            news_results = process_results(newsBreak_results_list)
         return news_results
 
 def get_sources():
@@ -41,39 +41,41 @@ def process_results(news_list):
     Function  that processes the news result and transform them to a list of Objects
     
     '''
-    news1_results = []
+    newsBreak_results = []
     for news_item in news_list:
         id = news_item.get('source').get('id')
         title = news_item.get('title')
+        author=news_item.get('author')
         description = news_item.get('description')
         image = news_item.get('urlToImage')
         url = news_item.get('url')
 
         if image:
-            news1_object = News(id=id,title=title,description=description,image=image,url=url)
-            news1_results.append(news1_object)
+            newsBreak_object = News(id=id,title=title,description=description,image=image,url=url)
+            newsBreak_results.append(newsBreak_object)
 
 
      
 
-    return news1_results
+    return newsBreak_results
 
-def get_news1(id):
-    get_news1_details_url = base_url.format(id,api_key)
+def get_newsBreak(id):
+    get_newsBreak_details_url = base_url.format(id,api_key)
 
-    with urllib.request.urlopen(get_news1_details_url) as url:
-        news1_details_data = url.read()
-        news1_details_response = json.loads(news1_details_data)
+    with urllib.request.urlopen(get_newsBreak_details_url) as url:
+        newsBreak_details_data = url.read()
+        newsBreak_details_response = json.loads(newsBreak_details_data)
 
-        news1_object = None
-        if news1_details_response:
-            id = news1_details_response.get('id')
-            title = news1_details_response.get('title')
-            description = news1_details_response.get('description')
+        newsBreak_object = None
+        if newsBreak_details_response:
+            id = newsBreak_details_response.get('id')
+            title = newsBreak_details_response.get('title')
+            author=newsBreak_details_response.get('author')
+            description = newsBreak_details_response.get('description')
 
-            news1_object = News(id,title,description)
+            newsBreak_object = News(id,title,author,description)
 
-    return news1_object
+    return newsBreak_object
 
 def search_news(news_name):
     search_news_url = 'https://newsapi.org/v2/everything?sources={}&apiKey={}'.format(api_key,news_name)
