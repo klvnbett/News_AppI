@@ -11,9 +11,10 @@ def index():
         '''
 
     popular_news = get_news('popular')
+    now_showing_news = get_news('now_playing')
     print(popular_news)
     title = 'Welcome to the News website'
-    return render_template('index.html', title = title, popular = popular_news)
+    return render_template('index.html', title = title, popular = popular_news, upcoming = upcoming_news, now_showing = now_showing_news)
 
 @app.route('/news/<int:news_id>')
 def news(news_id):
