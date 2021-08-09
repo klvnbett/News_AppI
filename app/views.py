@@ -27,3 +27,14 @@ def movie(id):
     title = f'{news.title}'
 
     return render_template('news.html',title = title,news = news)
+
+@app.route('/search/<news1_name>')
+def search(news1_name):
+    '''
+    View function to display the search results
+    '''
+    news1_name_list = news1_name.split(" ")
+    news1_name_format = "+".join(news1_name_list)
+    searched_news = search_news(news1_name_format)
+    title = f'search results for {news1_name}'
+    return render_template('search.html',news = searched_news)
