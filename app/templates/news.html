@@ -1,1 +1,28 @@
-<h1> Hello news {{ id }} </h1>
+{% extends 'base.html'%} {% block content %}
+<div class="container">
+
+
+    <div class="row">
+
+        {% for article in articles %}
+        <div class="col-xs-12 col-sm-4 col-md-3 col-lg-2 movie-card">
+            <div class="card border-light mb-3" style="max-width: 20rem;">
+                <div class="card-header">{{article.title}}</div>
+                <div class="card-body">
+                    <h4 class="card-title"><a href="{{article.url}}">
+                        visit site</a></h4>
+                    <img src="{{ article.image }}" alt="{{ article.title }} poster" class="img-responsive">
+
+
+                    <p class="card-text">
+                        {{article.description|truncate(15)}}</p>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+    {% endfor %}
+
+</div>
