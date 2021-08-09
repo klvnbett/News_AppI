@@ -1,3 +1,4 @@
+{% import 'macros.html' as macro%}
 <!DOCTYPE html>
 <html>
 
@@ -10,6 +11,11 @@
 </head>
 
 <body>
+
+    <h3> Breaking News</h3>
+    <ul>
+        {{ macro.displayNewsList(popular)}}
+    </ul>
 
 </body>
 
