@@ -1,11 +1,12 @@
 body {
-    background-color: rgb(194, 212, 212);
+    background-color: rgb(233, 245, 245);
     margin: 3rem;
     padding: 0;
 }
 
 h1 {
     text-align: center;
+    font-weight: bolder;
     font-style: italic;
     font-size: xx-large;
     color: greenyellow;
@@ -14,4 +15,8 @@ h1 {
 
 .card {
     margin: 2rem;
+}
+
+.card-header {
+    font-weight: bold;
 }
