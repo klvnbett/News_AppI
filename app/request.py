@@ -1,15 +1,22 @@
-from app import app
 import urllib.request,json
-from .models import news
+from .models import News
 
-News = news.News
 
+sources_url = None
 
 # Getting api key
-api_key = app.config['NEWS_API_KEY']
-sources_url=app.config["SOURCES_API_BASE_URL"]
+api_key = None
+# api_key = app.config['NEWS_API_KEY']
+
 # Getting the news base url
-base_url = app.config["NEWS_API_BASE_URL"]
+base_url = None
+# base_url = app.config["NEWS_API_BASE_URL"]
+
+def configure_request(app):
+    global api_key,base_url,sources_url
+    api_key = app.config['NEWS_API_KEY']
+    base_url = app.config['NEWS_API_BASE_URL']
+    sources_url=app.config["SOURCES_API_BASE_URL"]
 
 def get_news(source):
     '''
@@ -45,7 +52,6 @@ def process_results(news_list):
     for news_item in news_list:
         id = news_item.get('source').get('id')
         title = news_item.get('title')
-        author=news_item.get('author')
         description = news_item.get('description')
         image = news_item.get('urlToImage')
         url = news_item.get('url')
@@ -70,10 +76,9 @@ def get_newsBreak(id):
         if newsBreak_details_response:
             id = newsBreak_details_response.get('id')
             title = newsBreak_details_response.get('title')
-            author=newsBreak_details_response.get('author')
             description = newsBreak_details_response.get('description')
 
-            newsBreak_object = News(id,title,author,description)
+            newsBreak_object = News(id,title,description)
 
     return newsBreak_object
 

@@ -21,14 +21,14 @@
 
     <div class="container">
         <form>
-            <input type="text" name="movie_query" placeholder="Search for a news" class="form-control">
+            <input type="text" name="news_query" placeholder="Search for a news" class="form-control">
             <input type="submit" value="Submit" class="btn btn-default">
         </form>
     </div>
 
     <div class="card card-casscade wider">
         <h1>
-            NEWS UPDATES
+            NEWS UPDATES HAPPENING AROUND THE WORLD
         </h1>
     </div>
 
@@ -36,15 +36,15 @@
 
     {% for news in sources %}
     <div class="col-lg-3">
-        <div class="card text-white bg-secondary mb-3">
-            <div class="card-header">{{news.name}}</div>
-            <div class="card-body">
+        <div class="card >
+            <div class=" card-header ">{{news.name}}</div>
+            <div class="card-body ">
                 <h5>by{{news.author}}</h5>
-                <h4 class="card-title">{{news.description|truncate(50)}}
+                <h4 class="card-title ">{{news.description|truncate(80)}}
                 </h4>
 
-                <p class="card-text">
-                    <a href="/articles/{{news.id}}">
+                <p class="card-text ">
+                    <a href="/articles/{{news.id}} ">
                         <button>{{ news.name}}</button> </a>
                 </p>
             </div>
